@@ -1,4 +1,4 @@
-﻿namespace movieTickets.Data
+﻿namespace movieTickets.Data.Enum
 {
     public enum MovieCategory
     {
@@ -6,7 +6,6 @@
         Horror,
         Romance,
         Thriller,
-        Science Fiction,
         Crime,
         Mystery,
         Fantasy,

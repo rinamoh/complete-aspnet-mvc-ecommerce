@@ -1,5 +1,6 @@
-﻿using movieTickets.Data;
+﻿using movieTickets.Data.Enum;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace movieTickets.Models
 {
@@ -14,5 +15,21 @@ namespace movieTickets.Models
         public DateTime StartDate  { get; set; }
         public DateTime EndDate { get; set; }
         public MovieCategory MovieCategory { get; set; }
+
+        //relations
+
+        public List<Actor_Movie> Actors_Movies { get; set; }
+
+        //relations with cinema
+
+        public int CinemaId { get; set; }
+        [ForeignKey("CinemaId")]
+        public Cinema Cinema { get; set; }
+
+        //relations with producer
+
+        public int ProducerId { get; set; }
+        [ForeignKey("ProducerId")]
+        public Producer Producer { get; set; }
     }
 }
