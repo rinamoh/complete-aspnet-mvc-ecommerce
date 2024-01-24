@@ -9,6 +9,7 @@
         Crime,
         Mystery,
         Fantasy,
-        Documentary
+        Documentary,
+        Cartoon
     }
 }
