@@ -3,8 +3,7 @@ using movieTickets.Models;
 
 namespace movieTickets.Data.Services
 {
-    public interface IActorsService:IEntityBaseRepository<Actors>
+    public interface IProducersService:IEntityBaseRepository<Producer>
     {
-   
     }
 }

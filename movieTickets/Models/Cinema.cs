@@ -1,24 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using movieTickets.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace movieTickets.Models
 {
-    public class Cinema
+    public class Cinema:IEntityBase
     {
         [Key]
         public int Id { get; set; }
 
         [Display(Name = "Cinema Logo")]
+        [Required(ErrorMessage = "Cinema Logo is required")]
         public string Logo { get; set; }
 
-        [Display(Name = "Name")]
+        [Display(Name = "Cinema Name")]
+        [Required(ErrorMessage = "Cinema Name is required")]
         public string Name { get; set; }
 
-        [Display(Name = "Details")]
+        [Display(Name = "Description")]
+        [Required(ErrorMessage = "Cinema Description is required")]
         public string Description { get; set; }
 
-        
+
 
         //relations
+        [ValidateNever]
         public List<Movie> Movies { get; set; }
     }
 }
