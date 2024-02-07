@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using movieTickets.Data.Base;
 using System.ComponentModel.DataAnnotations;
 
 namespace movieTickets.Models
 {
-    public class Actors
+    public class Actors:IEntityBase
     {
         [Key]
         public int Id { get; set; }
@@ -14,7 +15,7 @@ namespace movieTickets.Models
 
         [Display(Name = "Name")]
         [Required(ErrorMessage = "FullName is required")]
-        [StringLength(50,MinimumLength =3,ErrorMessage ="Full Name must be between 3 and 50 chars")]
+       
         public string FullName { get; set; }
 
         [Display(Name = "Biography")]
