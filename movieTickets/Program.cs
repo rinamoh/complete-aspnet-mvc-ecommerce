@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 using movieTickets.Data;
 using movieTickets.Data.Services;
 using movieTickets.Data.Cart;
+using movieTickets.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,9 +24,16 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 builder.Services.AddScoped<IOrderService, OrdersService>();
 
+//identity services
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
 
 
 builder.Services.AddSession();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+} );
 
 builder.Services.AddControllersWithViews();
 
@@ -31,6 +41,7 @@ var app = builder.Build();
 //seed data
 
 AppDbInitializer.seed(app);
+AppDbInitializer.SeedUsersAndRolesAsync(app).Wait() ;
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -45,6 +56,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSession();
+
+//identity
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseAuthorization();
 

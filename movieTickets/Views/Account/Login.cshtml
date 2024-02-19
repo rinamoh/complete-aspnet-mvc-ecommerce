@@ -1,0 +1,98 @@
+﻿﻿@using movieTickets.Data.ViewModels;
+@model LoginVM;
+
+@{
+    ViewData["Title"] = "Log in to your account";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+
+
+       @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+        
+
+        <!-- Section: Design Block -->
+        <section class="text-center">
+            <!-- Background image -->
+            <div class="p-5 bg-image" style="
+        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+        height: 300px;
+        color:white
+        "></div>
+            <!-- Background image -->
+
+            <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+        margin-top: -100px;
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(30px);
+        ">
+                <div class="card-body py-5 px-md-5">
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <h2 class="fw-bold mb-5">Log In</h2>
+                            <form asp-action="Login">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label asp-for="EmailAddress" class="form-label" for="form3Example3">Email address</label>
+                                    <input asp-for="EmailAddress" type="email" id="form3Example3" class="form-control" />
+
+                                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <label asp-for="Password" class="control-label" for="form3Example4">Password</label>
+                                    <input asp-for="Password" type="password" id="form3Example4" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
+                                <!-- Checkbox -->
+                                
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-4" value="Log in">
+                                    Log In
+                                </button>
+                                <button type="submit" asp-controller="Movies" asp-action="Index" class="btn btn-primary btn-block mb-4">
+                                    Cancel
+                                </button>
+
+                                <!-- Register buttons -->
+                                <div class="text-center ">
+                                    <p>or log in with:</p>
+                                    <button type="button" class="btn btn-link btn-floating mx-1 ">
+                                        <i class="bi bi-facebook"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link btn-floating mx-1 rounded-circle">
+                                        <i class="bi bi-google"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link btn-floating mx-1 rounded-circle">
+                                        <i class="bi bi-twitter"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-link btn-floating mx-1 rounded-circle">
+                                        <i class="bi bi-instagram"></i>
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section: Design Block -->
+    </div>
+    </div>
+
+        
+   > 

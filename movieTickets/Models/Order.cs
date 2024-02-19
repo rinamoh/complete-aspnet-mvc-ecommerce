@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace movieTickets.Models
 {
@@ -10,10 +11,12 @@ namespace movieTickets.Models
         public string UserId { get; set; }
 
         //relations with order item model
+        [ForeignKey(nameof(UserId))]
+        public ApplicationUser User { get; set; }
 
         public List<OrderItem> OrderItems { get; set;}
 
 
-
+         
     }
 }
