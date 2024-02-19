@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@inject UserManager<ApplicationUser> userManager;
+@if (!User.Identity.IsAuthenticated)
+{
+    <a class="btn btn-outline-success my-2 my-sm-0 ms-2 me-2" asp-controller="Account" asp-action="Login">
+        <i class="bi bi-box-arrow-in-right"></i> Log In
+    </a>
+    <a class="btn btn-outline-primary my-2 my-sm-0 ms-2 me-2" asp-controller="Account" asp-action="Register">
+        <i class="bi bi-person-plus"></i> Register
+    </a>
+
+}
+else
+{
+    @*user profile*@
+    <div class="dropdown">
+        <button class="btn btn-outline-success dropdown-toggle ms-2 me-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-badge"></i> Hello @userManager.GetUserName(User)
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
+                    <i class="bi bi-list"></i> Orders
+                </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Users">
+                        <i class="bi bi-people"></i> Users
+                    </a>
+                }
+            </li>
+        </ul>
+    </div>
+    <span style="padding:2px;"></span>
+    <form asp-controller="Account" asp-action="Logout">
+        <button class="btn btn-outline-danger my-2 my-sm-0">
+            <i class="bi bi-box-arrow-in-right"></i>Log out
+        </button>
+    </form>
+    
+}
+
+

@@ -7,7 +7,7 @@ namespace movieTickets.Data.Services
         //add orders to db
         Task StoreOrderAsync(List<ShoppingCartItem> items, string userId, string userEmailAddress);
         //get orders from db
-        Task <List<Order>> GetOdersByUserIdAsync(string userId);
+        Task <List<Order>> GetOdersByUserIdAndRoleAsync(string userId, string userRole);
 
     }
 }
